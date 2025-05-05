@@ -1,21 +1,35 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+  
 
-const Cards = () => {
+const Cards = ({cardWidth, movie}) => {
+  //const { title, image, genres, originalLanguage, releaseDate, overview } = movie;
+  
+  
   return (
     <div
+    style={{ width: cardWidth }}
       className="h-[650px] relative flex justify-center items-center shrink-0 p-2 bg-gray-600 group">
       <div className=" w-[97%] h-[97%] m-auto text-white absolute rounded-lg bg-black/50 flex flex-col justify-center gap-y-2  p-10 cursor-pointer">
-        <h1 className="text-4xl"> The God Father</h1>
+        <h1 className="text-4xl">{title}</h1>
         <div className="flex gap-x-2 items-center">
           <span className=" text-lg"> Geners: </span>
-          <span className="font-semi-bold text-red-500"> Crime Drama </span>
-        </div>
+          {genres.map((genre, i) => (
+            <span key={i} className="font semi-bold  text-red-500">
+              {genre}
+              
+            </span>
+          ))}
+          </div>
+          
+                 
         <span className="flex gap-x-2">
-          original Language :<span className=" mr-2 uppercase"> EN </span>
+          original Language :<span className=" mr-2 uppercase">{originalLanguage}</span>
         </span>
         <span className="flex gap-x-2">
           Realease Date :
-          <span className="mr-2 text-yellow-400">1972-03-04</span>
+          <span className="mr-2 text-yellow-400">{releaseDate}</span>
         </span>
         <p className="flex flex-col gap-y-1">
           <span className="text-red-500"> Summary</span>
@@ -23,7 +37,7 @@ const Cards = () => {
         </p>
       </div>
       <img
-        src="../src/assets/img.png"
+        src="../assets/img.png"
         alt="movie image"
         className="object-cover rounded-xl opacity-50 group-hover:opacity-100
                      transition-opacity duration-500"/>

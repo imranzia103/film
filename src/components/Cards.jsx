@@ -1,23 +1,26 @@
 import React from "react";
 import { useState } from "react";
-import { useEffect } from "react";
+
   
 
 const Cards = ({cardWidth, movie}) => {
-  //const { title, image, genres, originalLanguage, releaseDate, overview } = movie;
-  
+  const { title, image, genres, originalLanguage, releaseDate, overview } = movie;
+  const[showDescription, setShowDescription] = useState(false);
+ 
   
   return (
     <div
     style={{ width: cardWidth }}
       className="h-[650px] relative flex justify-center items-center shrink-0 p-2 bg-gray-600 group">
-      <div className=" w-[97%] h-[97%] m-auto text-white absolute rounded-lg bg-black/50 flex flex-col justify-center gap-y-2  p-10 cursor-pointer">
+      <div onClick={() => setShowDescription(!showDescription)} 
+      className=" w-[97%] h-[97%] m-auto text-white absolute rounded-lg
+       bg-black/50 flex flex-col justify-center gap-y-2  p-10 cursor-pointer">
         <h1 className="text-4xl">{title}</h1>
         <div className="flex gap-x-2 items-center">
-          <span className=" text-lg"> Geners: </span>
-          {genres.map((genre, i) => (
-            <span key={i} className="font semi-bold  text-red-500">
-              {genre}
+          <span className="text-lg"> Geners: </span>
+         {genres ?.map((genre, i ) => (
+            <span key={i} className=" font semi-bold text-red-500">
+              {genre} 
               
             </span>
           ))}
@@ -33,11 +36,11 @@ const Cards = ({cardWidth, movie}) => {
         </span>
         <p className="flex flex-col gap-y-1">
           <span className="text-red-500"> Summary</span>
-          <span className="first-letter:pl-2"> Summary text</span>
+          <span className="first-letter:pl-2"> {overview}</span>
         </p>
       </div>
       <img
-        src="../assets/img.png"
+        src={image}
         alt="movie image"
         className="object-cover rounded-xl opacity-50 group-hover:opacity-100
                      transition-opacity duration-500"/>

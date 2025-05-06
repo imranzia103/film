@@ -23,23 +23,22 @@ try {
 	const response = await fetch(url, options);
 	const result = await response.json();
 	setMovies(result);
-  console.log(result);
+  console.log(result)
+  
 } catch (error) {
 	console.error(error);
 }
+};
       getMovies();
-    };
   }, []);
 
   return (
     <div
-      className=" flex justify-center items-center"
-      style={{ width: wrapperWidth }}
-    >
+      className=" flex justify-center items-center" style={{ width: wrapperWidth }}>
       <div className="flex flex-wrap">
-        {movies.map((movies, i) => (
+        {movies.map((movie, i) => (
           <div key={i}>
-            <Cards cardWidth={cardWidth} movies={movies} />
+            <Cards movie={movie} cardWidth={cardWidth}  />
           </div>
         ))}
       </div>

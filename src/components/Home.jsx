@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Cards from "./Cards";
 import Navigation from "./Navigation";
 
@@ -9,6 +9,17 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const[group, setGroup] = useState('Popular');
+  const [mousePos, setMousePos] = useState({ 
+    left : 0,
+     right : 0,
+      top : 0,
+       bottom : 0
+      
+    
+    });
+
+
+const cardsRef = useRef(null); 
 
   const apiKey = import.meta.env.VITE_API_KEY;
   const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -44,7 +55,18 @@ try {
     
     <Navigation page={page} setPage={setPage} setGroup={setGroup}/>
     <div
-      className=" flex justify-center items-center" style={{ width: wrapperWidth }}>
+      className=" flex justify-center items-center" 
+      style={{ width: wrapperWidth }}
+      ref={cardsRef}
+      onMouseMove={(e) => {
+        setMousePos({
+          left: e.clientX - cardsRef.current.offsetLeft,
+          right: e.clientX - cardsRef.current.offsetLeft + wrapperWidth,
+          top: e.clientY - cardsRef.current.offsetTop,
+          bottom: e.clientY - cardsRef.current.offsetTop + 200,
+        });
+      }}
+      >
       <div className="flex flex-wrap">
         {movies.map((movie, i) => (
           <div key={i}>

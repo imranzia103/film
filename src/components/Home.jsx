@@ -8,7 +8,7 @@ const Home = () => {
   const [wrapperWidth, setWrapperWidth] = useState(cardWidth * cardsInrow);
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const[group, setGroup] = useState('Popular');
+  const[group, setGroup] = useState('TopRated');
   const [mousePos, setMousePos] = useState({ 
     left : 0,
      right : 0,
